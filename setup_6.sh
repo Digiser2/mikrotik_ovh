@@ -10,7 +10,7 @@ sleep 3
 wget https://download.mikrotik.com/routeros/6.48.6/chr-6.48.6.img.zip -O chr.img.zip  && \
 gunzip -c chr.img.zip > chr.img  && \
 mount -o loop,offset=512 chr.img /mnt && \
-STORAGE=`lsblk | grep disk | cut -d ' ' -f 1 | head -n 2` && \
+STORAGE=`lsblk | grep disk | cut -d ' ' -f 1 | sed -n '2p'` && \
 echo STORAGE is $STORAGE && \
 ETH=`ip route show default | sed -n 's/.* dev \([^\ ]*\) .*/\1/p'` && \
 echo ETH is $ETH && \
